@@ -12,7 +12,6 @@ class Janitor:
 
     async def run(self):
         while True:
-            await asyncio.sleep(300)
             self._logger.info('Janitor task running')
             now = time()
 
@@ -21,5 +20,15 @@ class Janitor:
                 stat = os.stat(fpath)
 
                 if now - stat.st_mtime > self._recording_ttl:
-                    self._logger.info(f'Deleting {fpath}')
+                    self._logger.info(f'Deleting {fpath} (expired)')
                     os.remove(fpath)
+                    await asyncio.sleep(0)
+                    continue
+
+                if now - stat.st_mtime > 60 and os.path.getsize(fpath) == 0:
+                    self._logger.info(f'Deleting {fpath} (trash)')
+                    os.remove(fpath)
+                    await asyncio.sleep(0)
+                    continue
+
+            await asyncio.sleep(300)
