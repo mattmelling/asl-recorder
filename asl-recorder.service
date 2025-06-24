@@ -1,0 +1,9 @@
+# systemctl edit asl-recorder.service to edit environment variables, see README.md
+
+[Service]
+ExecStart=/opt/asl-recorder/venv/bin/asl-recorder
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,14 @@
+[project]
+name = "asl-recorder"
+version = "0.0.1"
+requires-python = ">= 3.8"
+authors = [
+    { name = "Matt G4IYT", email = "matt@g4iyt.uk" }
+]
+readme = "README.md"
+dependencies = [
+    "pyogg"
+]
+
+[project.scripts]
+asl-recorder = "asl_recorder.__main__:main"
