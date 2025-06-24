@@ -39,6 +39,7 @@
       };
       python-env = python.withPackages (ps: with ps; [
         pyogg
+        samplerate
         setuptools
       ]);
     in {
